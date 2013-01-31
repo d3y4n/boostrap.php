@@ -12,3 +12,9 @@
     }
     @set_error_handler('__globalErrorHandler');
     @set_exception_handler('__globalErrorHandler');
+    @register_shutdown_function(function() {
+        if(error_get_last())
+        {
+            echo "Script executed successfully!";
+        }
+    });
