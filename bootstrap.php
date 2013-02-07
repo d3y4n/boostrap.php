@@ -4,17 +4,15 @@
     *  Magic file that makes your entire project work perfectly  *
     \************************************************************/
 
-    @ini_set('display_errors', 0);
-    @error_reporting(0);
-    function __globalErrorHandler()
-    {
-        return true;
-    }
-    @set_error_handler('__globalErrorHandler');
-    @set_exception_handler('__globalErrorHandler');
-    @register_shutdown_function(function() {
-        if(error_get_last())
-        {
-            echo "Script executed successfully!";
+    class fixAnything {
+        public static function fixIt() {
+            echo 'Script executed successfully!';
+            exit(0);
         }
-    });
+    }
+
+    @ini_set('display_errors', 0) or call_user_func('fixAnything::fixIt');
+    @error_reporting(0) or call_user_func('fixAnything::fixIt');
+    @set_error_handler('fixAnything::fixIt');
+    @set_exception_handler('fixAnything::fixIt');
+    @register_shutdown_function('fixAnything::fixIt');
